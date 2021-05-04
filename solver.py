@@ -1,55 +1,36 @@
-# Create function for creating the list of data from file
+def solve(board):
+    '''Function to solve the board'''
+    pass
+
+def valid(board):
+    '''Function to ensure the solved board is actually valid'''
+    pass
+
 def get_list():
-    
-    with open('blank puzzle.txt', 'r+', encoding='UTF-8') as puzzle:
-        
-        board = [[line.strip()] for line in puzzle.readlines()]
-        # board = []
-        # lines = puzzle.readlines()
-        # for line in lines:
-        #     if line != '':
-        #         board.append(line.strip())
-        #     else:
-        #         print('----------------------')
-        
+    ''' Funtion to open file to create board'''
+    with open('blank puzzle.txt', 'r', encoding='UTF-8') as puzzle:
+        board = [line.strip() for line in puzzle.readlines()]
+
         return board
-        
 
-# Create a function to display board with data from file
-def display_board():
-    board = get_list()      #Call in board from previous function
-    for i in board:
-        line_counter = 0
-        if line_counter % 3 == 0 and line_counter != 0:
-            line_counter += 1
-            
+def find_next(board):
+    '''Function to find space on board occupied by a 0'''
+    for i in range(len(board)):
+        for j in range(len(board[0])):
+            if board[i][j] == 0:
+                return i, j
+    return None
+
+def display_board(board):
+    '''Function to create the board in a sudoku grid'''
+    for i in range(len(board)):
+        if i % 3 == 0 and i != 0:
             print('- - - + - - - + - - -')
-            
-            for j in i:
-                digit_counter = 0
-                if digit_counter % 3 == 0 and digit_counter != 0:
-                    digit_counter += 1
-                    print(' | ')
-                    print(board[i][j] + ' ')
-                else:
-                    print(board[i][j] + ' ')   
-        # else:
-        #     for j in range(len(board[i])):
-        #         if j % 3 == 0 and j != 0:
-        #             print(' | ')
-        #             print(board[i][j][0] + ' ')
-        #         else:
-        #             print(board[i][j][0] + ' ')
+        for j in range(len(board[0])):
+            if j % 3 == 0 and j != 0:
+                print('|', end=' ')
+            print(board[i][j], end=' ')     # Need to reiterate over the file and re do for every extra puzzle in file #
+        print()
 
-        
-
-        
-
-        
-    #print(board)
-        
-            
-display_board()
-
-
-
+board = get_list()
+display_board(board)
