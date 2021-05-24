@@ -1,7 +1,7 @@
 def get_list():
-    """Open file, iterate through all objects, append to board, return board to function"""
+    """ Open file, iterate through all objects, append to board, return board to function """
     with open('blank puzzle.txt', 'r+', encoding='UTF-8') as puzzle:
-        board=[]                            
+        board = []                            
         for line in puzzle.readlines():     
             grid = []
             for i in line.strip():
@@ -12,7 +12,7 @@ def get_list():
         return board
 
 def display_board(board):
-    """Display board for sudoku board with use of line and digit counters"""
+    """ Display board for sudoku board with use of line and digit counters """
     line_counter = -1
     for i in range(len(board)):
         print()
@@ -32,7 +32,7 @@ def display_board(board):
             print(board[i][j], end=' ')
             
 def find_empty(board):
-    """Search board for any 0 values to return postion, if no 0 found, return a value of None"""
+    """ Search board for any 0 values to return postion, if no 0 found, return a value of None """
     for i in range(len(board)):                         # Parse through rows and cols to find       #
         for j in range(len(board[0])):                  # an empty square to begin trying solutions #
             if board[i][j] == 0:
@@ -40,7 +40,7 @@ def find_empty(board):
     return None
 
 def solve(board):
-    """Attempt to fill the board with valid numbers recursively, once all loops are satisfied"""
+    """ Attempt to fill the board with valid numbers recursively, once all loops are satisfied """
     find = find_empty(board)
     if not find:
         return True
@@ -59,7 +59,7 @@ def solve(board):
     return False
 
 def valid(board, num, pos):
-    """Ensure board is valid along rows, columns, and 3x3 grids"""
+    """ Ensure board is valid along rows, columns, and 3x3 grids """
     # Check Rows
     for i in range(len(board[0])):
         if board[pos[0]][i] == num and pos[1] != i:
