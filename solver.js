@@ -9,7 +9,6 @@ let sudokuGrid = [
     [0,0,8,0,0,0,1,0,0],
     [2,0,0,0,0,4,0,6,0]
 ];
-
 /*
 let sudokuGrid = [
     [1,8,3,7,4,5,6,9,2],
@@ -45,58 +44,73 @@ const displayBoard = sudokuGrid => {
                     printCell(row[6]), printCell(row[7]), printCell(row[8]))
     }
 };
-
 const findNextEmpty = sudokuGrid => {
-    for (let i = 0; i < sudokuGrid.length; i++) {
-        for (let j = 0; j < sudokuGrid[i].length; j++) {
-            if (sudokuGrid[i][j] == 0) {
+    for (let i = 0; i < 9; i++) {
+        for (let j = 0; j < 9; j++) {
+            if (sudokuGrid[i][j] === 0)
                 return [i, j];
+        }
+    }
+    return [-1, -1]; 
+};
+const solveBoard = board => {
+    //console.log(sudokuGrid)
+    let find = findNextEmpty(sudokuGrid);
+    let row = find[0];
+    let col = find[1];
+    if (row === -1) {
+        return sudokuGrid;
+    } 
+    for (let i = 1; i <= 9; i++) {
+        if (checkNum(board, row, col, i)) {
+            board[row][col] = i;
+            solveBoard(sudokuGrid);
             }
         }
-    }
+        if (findNextEmpty(sudokuGrid)[0] !== -1) {
+            sudokuGrid[row][col] = 0;
+        } 
+    return sudokuGrid;
 };
-
-const solveBoard = board => {
-    let find = findNextEmpty(board);
-    if (!find) {
-        return true;
-    } else {
-        sudokuGrid[i][j] = find;
+const checkRow = (board, row, num) => {
+    for (let i = 0; i < board[row].length; i++) {
+        if (board[row][i] === num) {
+            return false;
+        }
     }
-    for (i=0;i<=9;i++) {
-        if (validBoard(sudokuGrid, i, find)) {
-            board[row][col] = i;
-        }
-        if (solveBoard(sudokuGrid) === true) {
-            return;
-        }
-        board[row][col] = 0;
-    } return false;
+    return true;
 };
-
-const validBoard = (sudokuGrid, num, pos) => {
-    for (i=0;i<sudokuGrid[i].length; i++) {
-        if (sudokuGrid[pos[0]][i] === num && pos[1] !== i) {
+const checkCol = (board, col, num) => {
+    for (let i = 0; i < board.length; i++) {
+        if (board[i][col] === num) {
             return false;
-        };
+        }
     }
-    for (i = 0;i<sudokuGrid.length;i++) {
-        if(sudokuGrid[i][pos[1]] === num && pos[0] !== i) {
-            return false;
-        };
-    }
-    let boxRow = Math.floor(pos[1] / 3);
-    let boxCol = Math.floor(pos[0] / 3);
-    for(i=0;i<boxCol*3,(boxCol*3)+3;i++){
-        for (j=0;j<boxRow*3,(boxRow*3)+3;j++) {
-            if(sudokuGrid[i][j] == num && [i,j] !== pos) {
+    return true;
+};
+const checkSubGrid = (board, row, col, num) => {
+    boxRow = Math.floor(row / 3) * 3;
+    boxCol = Math.floor(col / 3) * 3;
+    for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
+            if (board[boxRow + i][boxCol + j] === num) {
                 return false;
             }
         }
-    } return true
+    }
+    return true;
+};
+const checkNum = (board, row, col, num) => {
+    if (checkRow(board, row, num) && 
+        checkCol(board,col, num) && 
+        checkSubGrid(board, row, col, num)) {
+            return true;
+        }
+    return false;
 };
 
 displayBoard(sudokuGrid);
+console.log('');
 console.log('----------------------');
 solveBoard(sudokuGrid);
 displayBoard(sudokuGrid);

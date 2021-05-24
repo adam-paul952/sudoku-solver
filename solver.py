@@ -41,6 +41,7 @@ def find_empty(board):
 
 def solve(board):
     """ Attempt to fill the board with valid numbers recursively, once all loops are satisfied """
+    #print(board)
     find = find_empty(board)
     if not find:
         return True
