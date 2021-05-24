@@ -7,6 +7,7 @@ This is a Solver for Sudoku puzzles. It is supposed to to take a file of an arbi
 **Built With:**
 
 1. Python
+1. JavaScript
 
 **Acknowledgements:**
 
