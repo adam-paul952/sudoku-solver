@@ -12,16 +12,17 @@ let sudokuGrid = [
 ];
 
 const getRow = (board, row) => {
+    // Return a single row from the board
     return board[row];
 };
 const printCell = value => {
-    if (Array.isArray(value)) {
+    if (Array.isArray(value)) {      
         return 0;
     } else {
         return value;
     }
 };
-const displayBoard = sudokuGrid => {
+const displayBoard = sudokuGrid => {   
     console.log();
     for (i = 0; i < 9; i++) {
         let row = getRow(sudokuGrid, i);
