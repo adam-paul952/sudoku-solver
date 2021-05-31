@@ -7,55 +7,157 @@
 
     <head>
       <title>Sudoku Solver</title>
+      <link ref="stylesheet" href="style.css">
     </head>
     
     <body>
-    <div>
+    <header>
       <h2>Sudoku Solver</h2>
-    </div>
-    <div>
+    </header>
+    <section>
       <p>Input your numbers in the sudoku puzzle grid below and click the "solve" button below to solve your puzzle! </p>
-    </div>
+    </section>
     <!-- Use these divs to display tables with sudoku grid-->
     <div>
-      <table>
+      <table id="sudokuBoard">
+        <colgroup span="3"></colgroup>
+        <!--
+            <colgroup></colgroup>
+        <colgroup></colgroup>
+        -->
+        <!--<label for="cell"></label>
+    <select name="cell" id="cell">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+      <option>6</option>
+      <option>7</option>
+      <option>8</option>
+      <option>9</option>
+    </select>-->
         <tbody>
           <tr>
-            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            <td><input id="cell-0" type="text" pattern="[0-9]"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
           </tr>
           <tr>
-            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
           </tr>
           <tr>
-            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>          
           </tr>
-        </tbody>
-        <tbody>
+        
+        
           <tr>
-            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>          
           </tr>
           <tr>
-            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
           </tr>
           <tr>
-            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
           </tr>
-        </tbody>
-        <tbody>
+        
+        
           <tr>
-            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
           </tr>
           <tr>
-            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
           </tr>
           <tr>
-            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
           </tr>
         </tbody>
       </table>
     </div>
-    <!--<div></div> -->
-    <!-- Use div for solve button -->
-    <div></div>
+    <div id="submit">
+        <label for="submit"></label>
+        <input type="submit" value="Solve" onclick="userInput()">
+      </form>
+    </div>
+    <div id="reset">
+      <label for="reset"></label>
+      <input type="submit" value="Reset">
+    </div>
     </body>
+    <script>
+      let userInput = () => {
+          let i = document.getElementById("cell-0").value;
+          console.log(i);
+      }
+    </script>
 </html>
