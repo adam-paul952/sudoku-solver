@@ -8,6 +8,8 @@ This is a Solver for Sudoku puzzles. It is supposed to to take a file of an arbi
 
 1. Python
 1. JavaScript
+1. HTML
+1. CSS
 
 **Acknowledgements:**
 

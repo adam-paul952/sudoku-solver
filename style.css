@@ -1,20 +1,53 @@
 * {
-    box-sizing: border-box;
+    font-family: Verdana;
 }
-table {
-    margin: 10px;
-    border: 1px solid black;
-    display: grid;
+
+html {
+    background-color:orange;
 }
+
+header {
+    font-size: 30px;
+    text-align: center;
+}
+
+.container {
+    border-collapse: collapse;
+}
+
+tbody {
+    border: solid medium;
+}
+
 td {
-    border: 1px solid lightgrey;
-    width: 40px;
-    height: 40px;
+    border: solid thin;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    padding: 0;
 }
-input {
-    width: 40px;
-    height: 40px;
+input[type="number"] {
+    color: #000000;
+    padding: 0;
+    border: 0;
+    text-align: center;
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+    background-color: #FFFFFF;
+    outline: none;
+    
 }
-.p {
-    size: 48px;
+#sudokuBoard {
+    border: 2px solid black;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+section {
+    text-align: center;
+}
+
+#submit{
+    text-align: center;
 }

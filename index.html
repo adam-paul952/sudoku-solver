@@ -7,7 +7,8 @@
 
     <head>
       <title>Sudoku Solver</title>
-      <link ref="stylesheet" href="style.css">
+      <link rel="stylesheet" href="style.css">
+      <meta charset="UTF-8">
     </head>
     
     <body>
@@ -16,148 +17,127 @@
     </header>
     <section>
       <p>Input your numbers in the sudoku puzzle grid below and click the "solve" button below to solve your puzzle! </p>
-    </section>
-    <!-- Use these divs to display tables with sudoku grid-->
-    <div>
+    </section> <br>
+    <!-- Use these divs to display tables with sudoku grid -->
+    <div class="container">
       <table id="sudokuBoard">
-        <colgroup span="3"></colgroup>
-        <!--
-            <colgroup></colgroup>
-        <colgroup></colgroup>
-        -->
-        <!--<label for="cell"></label>
-    <select name="cell" id="cell">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-      <option>6</option>
-      <option>7</option>
-      <option>8</option>
-      <option>9</option>
-    </select>-->
+        <form action="" method="">
         <tbody>
           <tr>
-            <td><input id="cell-0" type="text" pattern="[0-9]"></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td><input id="cell-0" type="number" min="0" max="9"></td>
+            <td><input id="cell-1" type="number" min="0" max="9"></td>
+            <td><input id="cell-2" type="number" min="0" max="9"></td>
+            <td><input id="cell-3" type="number" min="0" max="9"></td>
+            <td><input id="cell-4" type="number" min="0" max="9"></td>
+            <td><input id="cell-5" type="number" min="0" max="9"></td>
+            <td><input id="cell-6" type="number" min="0" max="9"></td>
+            <td><input id="cell-7" type="number" min="0" max="9"></td>
+            <td><input id="cell-8" type="number" min="0" max="9"></td>
           </tr>
           <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td><input id="cell-9" type="number" min="0" max="9"></td>
+            <td><input id="cell-10" type="number" min="0" max="9"></td>
+            <td><input id="cell-11" type="number" min="0" max="9"></td>
+            <td><input id="cell-12" type="number" min="0" max="9"></td>
+            <td><input id="cell-13" type="number" min="0" max="9"></td>
+            <td><input id="cell-14" type="number" min="0" max="9"></td>
+            <td><input id="cell-15" type="number" min="0" max="9"></td>
+            <td><input id="cell-16" type="number" min="0" max="9"></td>
+            <td><input id="cell-17" type="number" min="0" max="9"></td>
           </tr>
           <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>          
-          </tr>
-        
-        
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>          
+            <td><input id="cell-18" type="number" min="0" max="9"></td>
+            <td><input id="cell-19" type="number" min="0" max="9"></td>
+            <td><input id="cell-20" type="number" min="0" max="9"></td>
+            <td><input id="cell-21" type="number" min="0" max="9"></td>
+            <td><input id="cell-22" type="number" min="0" max="9"></td>
+            <td><input id="cell-23" type="number" min="0" max="9"></td>
+            <td><input id="cell-24" type="number" min="0" max="9"></td>
+            <td><input id="cell-25" type="number" min="0" max="9"></td>
+            <td><input id="cell-26" type="number" min="0" max="9"></td>          
           </tr>
           <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td><input id="cell-26" type="number" min="0" max="9"></td>
+            <td><input id="cell-27" type="number" min="0" max="9"></td>
+            <td><input id="cell-28" type="number" min="0" max="9"></td>
+            <td><input id="cell-29" type="number" min="0" max="9"></td>
+            <td><input id="cell-30" type="number" min="0" max="9"></td>
+            <td><input id="cell-31" type="number" min="0" max="9"></td>
+            <td><input id="cell-32" type="number" min="0" max="9"></td>
+            <td><input id="cell-33" type="number" min="0" max="9"></td>
+            <td><input id="cell-34" type="number" min="0" max="9"></td>          
           </tr>
           <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-        
-        
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td><input id="cell-35" type="number" min="0" max="9"></td>
+            <td><input id="cell-36" type="number" min="0" max="9"></td>
+            <td><input id="cell-37" type="number" min="0" max="9"></td>
+            <td><input id="cell-38" type="number" min="0" max="9"></td>
+            <td><input id="cell-39" type="number" min="0" max="9"></td>
+            <td><input id="cell-40" type="number" min="0" max="9"></td>
+            <td><input id="cell-41" type="number" min="0" max="9"></td>
+            <td><input id="cell-42" type="number" min="0" max="9"></td>
+            <td><input id="cell-43" type="number" min="0" max="9"></td>
           </tr>
           <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td><input id="cell-44" type="number" min="0" max="9"></td>
+            <td><input id="cell-45" type="number" min="0" max="9"></td>
+            <td><input id="cell-46" type="number" min="0" max="9"></td>
+            <td><input id="cell-47" type="number" min="0" max="9"></td>
+            <td><input id="cell-48" type="number" min="0" max="9"></td>
+            <td><input id="cell-49" type="number" min="0" max="9"></td>
+            <td><input id="cell-50" type="number" min="0" max="9"></td>
+            <td><input id="cell-51" type="number" min="0" max="9"></td>
+            <td><input id="cell-52" type="number" min="0" max="9"></td>
           </tr>
           <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td><input id="cell-53" type="number" min="0" max="9"></td>
+            <td><input id="cell-54" type="number" min="0" max="9"></td>
+            <td><input id="cell-55" type="number" min="0" max="9"></td>
+            <td><input id="cell-56" type="number" min="0" max="9"></td>
+            <td><input id="cell-57" type="number" min="0" max="9"></td>
+            <td><input id="cell-58" type="number" min="0" max="9"></td>
+            <td><input id="cell-59" type="number" min="0" max="9"></td>
+            <td><input id="cell-60" type="number" min="0" max="9"></td>
+            <td><input id="cell-61" type="number" min="0" max="9"></td>
+          </tr>
+          <tr>
+            <td><input id="cell-62" type="number" min="0" max="9"></td>
+            <td><input id="cell-63" type="number" min="0" max="9"></td>
+            <td><input id="cell-64" type="number" min="0" max="9"></td>
+            <td><input id="cell-65" type="number" min="0" max="9"></td>
+            <td><input id="cell-66" type="number" min="0" max="9"></td>
+            <td><input id="cell-67" type="number" min="0" max="9"></td>
+            <td><input id="cell-68" type="number" min="0" max="9"></td>
+            <td><input id="cell-69" type="number" min="0" max="9"></td>
+            <td><input id="cell-70" type="number" min="0" max="9"></td>
+          </tr>
+          <tr>
+            <td><input id="cell-71" type="number" min="0" max="9"></td>
+            <td><input id="cell-72" type="number" min="0" max="9"></td>
+            <td><input id="cell-73" type="number" min="0" max="9"></td>
+            <td><input id="cell-74" type="number" min="0" max="9"></td>
+            <td><input id="cell-75" type="number" min="0" max="9"></td>
+            <td><input id="cell-76" type="number" min="0" max="9"></td>
+            <td><input id="cell-77" type="number" min="0" max="9"></td>
+            <td><input id="cell-78" type="number" min="0" max="9"></td>
+            <td><input id="cell-79" type="number" min="0" max="9"></td>
           </tr>
         </tbody>
       </table>
     </div>
+    <br>
     <div id="submit">
         <label for="submit"></label>
         <input type="submit" value="Solve" onclick="userInput()">
+        <label for="reset"></label>
+        <input type="submit" value="Reset">
       </form>
-    </div>
-    <div id="reset">
-      <label for="reset"></label>
-      <input type="submit" value="Reset">
     </div>
     </body>
     <script>
-      let userInput = () => {
+      /*let userInput = () => {
           let i = document.getElementById("cell-0").value;
           console.log(i);
-      }
+      }*/
     </script>
 </html>
