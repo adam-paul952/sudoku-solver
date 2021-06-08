@@ -9,16 +9,20 @@
       <title>Sudoku Solver</title>
       <link rel="stylesheet" href="style.css">
       <meta charset="UTF-8">
+      <script src="solver.js"></script>
     </head>
     
-    <body>
+    <body onload="generateBoard()">
     <header>
       <h2>Sudoku Solver</h2>
     </header>
     <section>
       <p>Input your numbers in the sudoku puzzle grid below and click the "solve" button below to solve your puzzle! </p>
     </section> <br>
-    <!-- Use these divs to display tables with sudoku grid -->
+    <div id="container"></div>
+    <div id="submit"></div>
+    <div id="reset"></div>
+    <!-- Use these divs to display tables with sudoku grid
     <div class="container">
       <table id="sudokuBoard">
         <form action="" method="">
@@ -132,12 +136,7 @@
         <label for="reset"></label>
         <input type="submit" value="Reset">
       </form>
-    </div>
+    </div> -->
     </body>
-    <script>
-      /*let userInput = () => {
-          let i = document.getElementById("cell-0").value;
-          console.log(i);
-      }*/
-    </script>
+    
 </html>

@@ -99,8 +99,33 @@ const checkNum = (board, row, col, num) => {
     return false;
 };
 
-displayBoard(sudokuGrid);
-console.log('');
-console.log('----------------------');
-solveBoard(sudokuGrid);
-displayBoard(sudokuGrid);
+const generateBoard = () => {
+    //Call div for containing table
+    let sudokuGrid = document.getElementById("container");
+    
+    //Create table and table body
+    let grid = document.createElement("table");
+    let tbody = document.createElement("tbody");
+    //Create rows and cols
+    for (let i = 0; i < 9; i++) {
+        let row = document.createElement("tr");
+        for (let j = 0; j < 9; j++) {
+            let col = document.createElement("td");
+            let cell = document.createElement("input");
+            col.appendChild(cell);
+            row.appendChild(col);
+        }
+        tbody.appendChild(row);
+    } 
+    //Create input for cells
+
+    //Append all children to parents
+    grid.appendChild(tbody);
+    sudokuGrid.appendChild(grid);
+}
+
+// displayBoard(sudokuGrid);
+// console.log('');
+// console.log('----------------------');
+// solveBoard(sudokuGrid);
+// displayBoard(sudokuGrid);
