@@ -106,22 +106,47 @@ const generateBoard = () => {
     //Create table and table body
     let grid = document.createElement("table");
     let tbody = document.createElement("tbody");
+    
     //Create rows and cols
     for (let i = 0; i < 9; i++) {
         let row = document.createElement("tr");
         for (let j = 0; j < 9; j++) {
             let col = document.createElement("td");
+            
+            // Create Cell Input and set max and min
             let cell = document.createElement("input");
+            cell.setAttribute("type", "number");
+            cell.setAttribute("min", 0);
+            cell.setAttribute("max", 9);
+            
             col.appendChild(cell);
             row.appendChild(col);
         }
         tbody.appendChild(row);
     } 
-    //Create input for cells
-
-    //Append all children to parents
     grid.appendChild(tbody);
     sudokuGrid.appendChild(grid);
+}
+
+const createSubmit = () => {
+    
+    let submitBtn = document.getElementById("submit");
+    submitBtn = document.createElement("input");
+    submitBtn.setAttribute("type", "button")
+    submitBtn.setAttribute("name", "Solve")
+    submitBtn.setAttribute("value", "Solve");
+    let btn = document.getElementById("btn");
+    btn.appendChild(submitBtn)
+}
+
+const createReset = () => {
+    let resetBtn = document.getElementById("reset");
+    resetBtn = document.createElement("input");
+    resetBtn.setAttribute("type", "button");
+    resetBtn.setAttribute("name", "Reset");
+    resetBtn.setAttribute("value", "Reset");
+    let btn = document.getElementById("btn");
+    btn.appendChild(resetBtn);
 }
 
 // displayBoard(sudokuGrid);

@@ -37,7 +37,7 @@ input[type="number"] {
     background-color: #FFFFFF;
     outline: none;
 }
-.container {
+table {
     border: 2px solid black;
     margin-left: auto;
     margin-right: auto;
@@ -47,16 +47,23 @@ section {
     text-align: center;
 }
 
-#submit{
-    text-align: center;
+input[type=button] {
+    size: 28px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 4px;
+    margin-left: 430px;
+    margin-right: -250px;
+    width: 100px;
 }
 
+/* Remove up and down arrows in input cells */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 /* Firefox */
-input[type=number] {
+ input[type=number] {
   -moz-appearance: textfield;
-}
+} 
