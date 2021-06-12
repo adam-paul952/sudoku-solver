@@ -1,15 +1,14 @@
-<!-- 
-    Author: Adam Paul
-    A webpage to make my sudoku solver interactive
--->
 <!DOCTYPE html>
 <html lang="en">
 
     <head>
       <title>Sudoku Solver</title>
       <link rel="stylesheet" href="style.css">
-      <meta charset="UTF-8">
       <script src="solver.js"></script>
+      <meta charset="UTF-8">
+      <meta name="description" content="A sudoku Solver">
+      <meta name="author" content ="Adam Paul">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     
     <body onload="generateBoard(); createSubmit(); createReset()">
@@ -19,7 +18,7 @@
       <section>
         <p>Input your numbers in the sudoku puzzle grid below and click the "solve" button below to solve your puzzle! </p>
         <p>Ensure numbers are between 1 - 9; with no repeating numbers in a single row, column or 3x3 square</p>
-      </section> <br>
+      </section>
       <form>
         <div id="container"></div>
         <br>

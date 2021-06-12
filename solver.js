@@ -143,7 +143,7 @@ const createSubmit = () => {
     submitBtn.setAttribute("value", "Solve");
     let btn = document.getElementById("btn");
     btn.appendChild(submitBtn)
-    //submitBtn.addEventListener("click", readTable(grid));
+    submitBtn.addEventListener("click", readTable(grid));
 }
 
 const createReset = () => {
@@ -158,11 +158,12 @@ const createReset = () => {
 
 // Function to parse through HTML table and return values
 // and execute solver
-// const readTable = table => {
-//     //let board = [];
-//     let table = document.getElementById("container").innerHTML;
-//     console.log(table);
-// }
+const readTable = table => {
+    //let board = [];
+    table = document.getElementById("container");
+    
+    console.log(table);
+}
 
 // Function to set answers in the table
 
