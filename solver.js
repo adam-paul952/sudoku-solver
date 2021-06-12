@@ -99,6 +99,12 @@ const checkNum = (board, row, col, num) => {
     return false;
 };
 
+// displayBoard(sudokuGrid);
+// console.log('');
+// console.log('----------------------');
+// solveBoard(sudokuGrid);
+// displayBoard(sudokuGrid);
+
 const generateBoard = () => {
     //Call div for containing table
     let sudokuGrid = document.getElementById("container");
@@ -137,6 +143,7 @@ const createSubmit = () => {
     submitBtn.setAttribute("value", "Solve");
     let btn = document.getElementById("btn");
     btn.appendChild(submitBtn)
+    //submitBtn.addEventListener("click", readTable(grid));
 }
 
 const createReset = () => {
@@ -149,8 +156,15 @@ const createReset = () => {
     btn.appendChild(resetBtn);
 }
 
-// displayBoard(sudokuGrid);
-// console.log('');
-// console.log('----------------------');
-// solveBoard(sudokuGrid);
-// displayBoard(sudokuGrid);
+// Function to parse through HTML table and return values
+// and execute solver
+// const readTable = table => {
+//     //let board = [];
+//     let table = document.getElementById("container").innerHTML;
+//     console.log(table);
+// }
+
+// Function to set answers in the table
+
+// Function to catch any errors to detect an
+// unsolvable board

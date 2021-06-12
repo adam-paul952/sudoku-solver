@@ -11,21 +11,38 @@ header {
     text-align: center;
 }
 
-.container {
+section {
+    text-align: center;
+}
+
+table {
     border-collapse: collapse;
 }
 
-tbody {
-    border: solid medium;
-}
-
 td {
-    border: solid thin;
+    border: solid thin black;
     height: 50px;
     width: 50px;
     text-align: center;
     padding: 0;
 }
+
+td:first-child {
+    border-left: solid thick black;
+}
+
+td:nth-child(3n) {
+    border-right: solid thick black;
+}
+
+tr:first-child td{
+    border-top: solid thick black;
+}
+
+tr:nth-child(3n) td {
+    border-bottom: solid thick black;
+}
+
 input[type="number"] {
     color: #000000;
     padding: 0;
@@ -38,17 +55,13 @@ input[type="number"] {
     outline: none;
 }
 table {
-    border: 2px solid black;
+    border: solid black;
     margin-left: auto;
     margin-right: auto;
 }
 
-section {
-    text-align: center;
-}
-
 input[type=button] {
-    size: 28px;
+    resize: 28px;
     padding-left: 10px;
     padding-right: 10px;
     border-radius: 4px;
