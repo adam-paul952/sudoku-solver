@@ -131,19 +131,24 @@ const generateBoard = () => {
         tbody.appendChild(row);
     } 
     grid.appendChild(tbody);
+    tbody.setAttribute("id", "board");
     sudokuGrid.appendChild(grid);
 }
 
 const createSubmit = () => {
-    
     let submitBtn = document.getElementById("submit");
     submitBtn = document.createElement("input");
-    submitBtn.setAttribute("type", "button")
-    submitBtn.setAttribute("name", "Solve")
+    submitBtn.setAttribute("type", "button");
+    submitBtn.setAttribute("id", "submitButton")
+    submitBtn.setAttribute("name", "Solve");
     submitBtn.setAttribute("value", "Solve");
     let btn = document.getElementById("btn");
+    const grid = document.getElementById("board");
+    submitBtn.addEventListener("click", () => {
+        readTable(grid);
+        console.log("submitted");
+    });
     btn.appendChild(submitBtn)
-    //submitBtn.addEventListener("click", readTable(grid));
 }
 
 const createReset = () => {
@@ -158,11 +163,15 @@ const createReset = () => {
 
 // Function to parse through HTML table and return values
 // and execute solver
-// const readTable = table => {
-//     //let board = [];
-//     let table = document.getElementById("container").innerHTML;
-//     console.log(table);
-// }
+function readTable(table) {
+    //let board = [];
+    const nodeNumbers = table.childNodes.length;
+    const nodes = table.childNodes;
+    nodes.forEach(item => {
+        console.log(item.childNodes);
+    })
+    console.log(`Inner tags: ${nodeNumbers}`);
+}
 
 // Function to set answers in the table
 
