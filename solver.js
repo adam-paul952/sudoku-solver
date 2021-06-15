@@ -124,6 +124,10 @@ const generateBoard = () => {
             cell.setAttribute("type", "number");
             cell.setAttribute("min", 0);
             cell.setAttribute("max", 9);
+            cell.setAttribute("name", "cell");
+            cell.setAttribute("contentEditable", "true");
+            cell.setAttribute("value", "")
+            cell.setAttribute("placeholder", "0");
             
             col.appendChild(cell);
             row.appendChild(col);
@@ -164,13 +168,17 @@ const createReset = () => {
 // Function to parse through HTML table and return values
 // and execute solver
 function readTable(table) {
-    //let board = [];
     const nodeNumbers = table.childNodes.length;
     const nodes = table.childNodes;
-    nodes.forEach(item => {
-        console.log(item.childNodes);
+    let cellCount = 1;
+    nodes.forEach(row => {
+        row.childNodes.forEach(col =>{
+            col.setAttribute("id", "cell " + cellCount);
+            let input = document.getElementById("cell " + cellCount).values;
+            cellCount++;
+            console.log(input);
+        })
     })
-    console.log(`Inner tags: ${nodeNumbers}`);
 }
 
 // Function to set answers in the table
