@@ -188,7 +188,14 @@ function readTable(table) {
         })
         sudokuGr.push(rows);
     })
-    return sudokuGr;
+    //console.log(sudokuGr);
+    let solved = solveBoard(sudokuGr);
+    board = document.getElementById("board");
+    for (let i = 0; i < board.rows.length; i++) {
+        for (let j = 0; j < board.rows[i].cells.length; j++) {
+            board.rows[i].cells[j].innerHTML = solved[i][j];
+        }
+    }
 }
 
 // Function to set answers in the table
