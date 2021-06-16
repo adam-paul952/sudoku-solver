@@ -171,14 +171,24 @@ function readTable(table) {
     const nodeNumbers = table.childNodes.length;
     const nodes = table.childNodes;
     let cellCount = 1;
+    let sudokuGr = [];
     nodes.forEach(row => {
+        let rows = [];
         row.childNodes.forEach(col =>{
-            col.setAttribute("id", "cell " + cellCount);
-            let input = document.getElementById("cell " + cellCount).values;
-            cellCount++;
-            console.log(input);
+            col.childNodes.forEach(cell =>{
+                cell.setAttribute("id", "cell " + cellCount);
+                cellCount++;
+                if (cell == "") {
+                    cell.value = 0;
+                } else {
+                    cell.value;
+                }
+                rows.push(cell.value);
+            })
         })
+        sudokuGr.push(rows);
     })
+    return sudokuGr;
 }
 
 // Function to set answers in the table
