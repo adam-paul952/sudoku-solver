@@ -124,6 +124,10 @@ const generateBoard = () => {
             cell.setAttribute("type", "number");
             cell.setAttribute("min", 0);
             cell.setAttribute("max", 9);
+            cell.setAttribute("name", "cell");
+            cell.setAttribute("contentEditable", "true");
+            cell.setAttribute("value", "")
+            cell.setAttribute("placeholder", "0");
             
             col.appendChild(cell);
             row.appendChild(col);
@@ -131,19 +135,24 @@ const generateBoard = () => {
         tbody.appendChild(row);
     } 
     grid.appendChild(tbody);
+    tbody.setAttribute("id", "board");
     sudokuGrid.appendChild(grid);
 }
 
 const createSubmit = () => {
-    
     let submitBtn = document.getElementById("submit");
     submitBtn = document.createElement("input");
-    submitBtn.setAttribute("type", "button")
-    submitBtn.setAttribute("name", "Solve")
+    submitBtn.setAttribute("type", "button");
+    submitBtn.setAttribute("id", "submitButton")
+    submitBtn.setAttribute("name", "Solve");
     submitBtn.setAttribute("value", "Solve");
     let btn = document.getElementById("btn");
+    const grid = document.getElementById("board");
+    submitBtn.addEventListener("click", () => {
+        readTable(grid);
+        console.log("submitted");
+    });
     btn.appendChild(submitBtn)
-    submitBtn.addEventListener("click", readTable(grid));
 }
 
 const createReset = () => {
@@ -158,11 +167,35 @@ const createReset = () => {
 
 // Function to parse through HTML table and return values
 // and execute solver
-const readTable = table => {
-    //let board = [];
-    table = document.getElementById("container");
-    
-    console.log(table);
+function readTable(table) {
+    const nodeNumbers = table.childNodes.length;
+    const nodes = table.childNodes;
+    let cellCount = 1;
+    let sudokuGr = [];
+    nodes.forEach(row => {
+        let rows = [];
+        row.childNodes.forEach(col =>{
+            col.childNodes.forEach(cell =>{
+                cell.setAttribute("id", "cell " + cellCount);
+                cellCount++;
+                if (cell == "") {
+                    cell.value = 0;
+                } else {
+                    cell.value;
+                }
+                rows.push(cell.value);
+            })
+        })
+        sudokuGr.push(rows);
+    })
+    //console.log(sudokuGr);
+    let solved = solveBoard(sudokuGr);
+    board = document.getElementById("board");
+    for (let i = 0; i < board.rows.length; i++) {
+        for (let j = 0; j < board.rows[i].cells.length; j++) {
+            board.rows[i].cells[j].innerHTML = solved[i][j];
+        }
+    }
 }
 
 // Function to set answers in the table
