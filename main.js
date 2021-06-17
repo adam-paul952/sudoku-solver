@@ -83,14 +83,13 @@ function readTable(table) {
         })
         sudokuGr.push(rows);
     }); 
-    return sudokuGr;
+    const board = sudokuGr;
+    let solved = solveBoard(board);
+    console.log(solved);
 }
-let sudokuGrid = readTable(table);
-//console.log(board);
-    //console.log(sudokuGr);
-function displaySolveBoard (sudokuGrid) {    
-    let solved = solveBoard(sudokuGrid);
-    board = document.getElementById("board");
+
+function displaySolveBoard (board) {    
+    let solved = solveBoard(board);
     for (let i = 0; i < board.rows.length; i++) {
         for (let j = 0; j < board.rows[i].cells.length; j++) {
             board.rows[i].cells[j].innerHTML = solved[i][j];
@@ -98,10 +97,10 @@ function displaySolveBoard (sudokuGrid) {
     }
 }
 
-const findNextEmpty = sudokuGrid => {
+const findNextEmpty = board => {
     for (let i = 0; i < 9; i++) {
         for (let j = 0; j < 9; j++) {
-            if (sudokuGrid[i][j] === 0)
+            if (board[i][j] === 0)
                 return [i, j];
         }
     }
@@ -109,11 +108,11 @@ const findNextEmpty = sudokuGrid => {
 };
 const solveBoard = board => {
     //console.log(sudokuGrid)
-    let find = findNextEmpty(sudokuGr);
+    let find = findNextEmpty(board);
     let row = find[0];
     let col = find[1];
     if (row === -1) {
-        return sudokuGrid;
+        return board;
     } 
     for (let i = 1; i <= 9; i++) {
         if (checkNum(board, row, col, i)) {
