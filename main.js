@@ -21,6 +21,7 @@ const generateBoard = () => {
             cell.setAttribute("contentEditable", "true");
             cell.setAttribute("value", "")
             cell.setAttribute("placeholder", "0");
+            cell.setAttribute("maxlength", "1")
             
             col.appendChild(cell);
             row.appendChild(col);
@@ -42,31 +43,35 @@ const createSubmit = (sudokuGrid) => {
     let btn = document.getElementById("btn");
     const grid = document.getElementById("board");
     submitBtn.addEventListener("click", () => {
-        readTable(grid);
+        readTable(grid, solveBoard);
     });
     // submitBtn.addEventListener("click", () => {
-    //     displaySolveBoard(sudokuGrid);
+    //     displaySolveBoard();
     // });
     btn.appendChild(submitBtn)
 }
 
 const createReset = () => {
-    let resetBtn = document.getElementById("reset");
+    let resetBtn = document.getElementById("resetBtn");
     resetBtn = document.createElement("input");
     resetBtn.setAttribute("type", "button");
     resetBtn.setAttribute("name", "Reset");
     resetBtn.setAttribute("value", "Reset");
     let btn = document.getElementById("btn");
+    let grid = document.getElementById("board");
+    resetBtn.addEventListener("click", () => {
+        document.getElementById("form1").reset();
+    })
     btn.appendChild(resetBtn);
 }
 
 // Function to parse through HTML table and return values
 // and execute solver
-function readTable(table) {
+function readTable(table, solveBoard) {
     const nodeNumbers = table.childNodes.length;
     const nodes = table.childNodes;
     let cellCount = 1;
-    let sudokuGr = [];
+    const sudokuGr = [];
     nodes.forEach(row => {
         let rows = [];
         row.childNodes.forEach(col =>{
@@ -83,13 +88,12 @@ function readTable(table) {
         })
         sudokuGr.push(rows);
     }); 
-    const board = sudokuGr;
-    let solved = solveBoard(board);
-    console.log(solved);
+    
+    console.log(sudokuGr);
 }
 
-function displaySolveBoard (board) {    
-    let solved = solveBoard(board);
+function displaySolveBoard(readTable) {    
+    let solved = solveBoard(sudokuGr);
     for (let i = 0; i < board.rows.length; i++) {
         for (let j = 0; j < board.rows[i].cells.length; j++) {
             board.rows[i].cells[j].innerHTML = solved[i][j];
@@ -106,9 +110,9 @@ const findNextEmpty = board => {
     }
     return [-1, -1]; 
 };
-const solveBoard = board => {
+function solveBoard(readTable) {
     //console.log(sudokuGrid)
-    let find = findNextEmpty(board);
+    let find = findNextEmpty(sudokuBoard);
     let row = find[0];
     let col = find[1];
     if (row === -1) {

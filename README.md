@@ -2,7 +2,14 @@
 
 **Description:**
 
-This is a Solver for Sudoku puzzles. It is supposed to to take a file of an arbitrary length, print out the puzzle with 0's filling the open spaces and return the completed puzzle.
+**Description:**
+The Python version of this code is designed to read a text file that has your board on it, and print the results into your console.
+
+The solver.js file the board is hardcoded at the top, you can fill in the board with your board you wish to solve and console.log the reseults to your console.
+
+The remainder of the code is to be opened in your browser, and place your numbers in the board accordingly and return your solved board to the screen.
+
+All versions of this code is meant to have "0" denoting an empty space.
 
 **Built With:**
 

@@ -62,10 +62,16 @@ input[type=button] {
     padding-left: 10px;
     padding-right: 10px;
     border-radius: 4px;
-    margin-left: 440px;
-    margin-right: -270px;
     width: 100px;
+    margin: 0px 80px;
 }
+
+#btn {
+    position: relative;
+    justify-content: center;
+    display: flex;
+}
+
 
 /* Remove up and down arrows in input cells */
 input::-webkit-outer-spin-button,
