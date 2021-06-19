@@ -1,3 +1,15 @@
+const testInput = [
+    [0,8,0,7,0,0,0,0,2],
+    [0,0,7,0,0,0,4,0,0],
+    [9,4,0,0,0,3,5,0,0],
+    [4,0,0,5,2,0,0,0,0],
+    [5,0,0,8,0,1,0,0,4],
+    [0,0,0,0,3,9,0,0,6],
+    [0,0,4,3,0,0,0,2,8],
+    [0,0,8,0,0,0,1,0,0],
+    [2,0,0,0,0,4,0,6,0]
+];
+
 const generateBoard = () => {
     //Call div for containing table
     let sudokuGrid = document.getElementById("container");
@@ -43,11 +55,8 @@ const createSubmit = (sudokuGrid) => {
     let btn = document.getElementById("btn");
     const grid = document.getElementById("board");
     submitBtn.addEventListener("click", () => {
-        readTable(grid, solveBoard);
+        displaySolveBoard(grid);
     });
-    // submitBtn.addEventListener("click", () => {
-    //     displaySolveBoard();
-    // });
     btn.appendChild(submitBtn)
 }
 
@@ -67,11 +76,11 @@ const createReset = () => {
 
 // Function to parse through HTML table and return values
 // and execute solver
-function readTable(table, solveBoard) {
+function readTable(table) {
     const nodeNumbers = table.childNodes.length;
     const nodes = table.childNodes;
     let cellCount = 1;
-    const sudokuGr = [];
+    let sudokuGr = [];
     nodes.forEach(row => {
         let rows = [];
         row.childNodes.forEach(col =>{
@@ -88,12 +97,14 @@ function readTable(table, solveBoard) {
         })
         sudokuGr.push(rows);
     }); 
-    
-    console.log(sudokuGr);
+    console.log(testInput);
+    //return sudokuGr;
+    return testInput;
 }
 
-function displaySolveBoard(readTable) {    
-    let solved = solveBoard(sudokuGr);
+function displaySolveBoard(table) {
+    const inputs = readTable(table);
+    let solved = solveBoard(inputs);
     for (let i = 0; i < board.rows.length; i++) {
         for (let j = 0; j < board.rows[i].cells.length; j++) {
             board.rows[i].cells[j].innerHTML = solved[i][j];
@@ -112,7 +123,7 @@ const findNextEmpty = board => {
 };
 function solveBoard(readTable) {
     //console.log(sudokuGrid)
-    let find = findNextEmpty(sudokuBoard);
+    let find = findNextEmpty(readTable);
     let row = find[0];
     let col = find[1];
     if (row === -1) {
