@@ -1,15 +1,3 @@
-const testInput = [
-    [0,8,0,7,0,0,0,0,2],
-    [0,0,7,0,0,0,4,0,0],
-    [9,4,0,0,0,3,5,0,0],
-    [4,0,0,5,2,0,0,0,0],
-    [5,0,0,8,0,1,0,0,4],
-    [0,0,0,0,3,9,0,0,6],
-    [0,0,4,3,0,0,0,2,8],
-    [0,0,8,0,0,0,1,0,0],
-    [2,0,0,0,0,4,0,6,0]
-];
-
 const generateBoard = () => {
     //Call div for containing table
     let sudokuGrid = document.getElementById("container");
@@ -45,7 +33,7 @@ const generateBoard = () => {
     sudokuGrid.appendChild(grid);
 }
 
-const createSubmit = (sudokuGrid) => {
+const createSubmit = () => {
     let submitBtn = document.getElementById("submit");
     submitBtn = document.createElement("input");
     submitBtn.setAttribute("type", "button");
@@ -67,17 +55,15 @@ const createReset = () => {
     resetBtn.setAttribute("name", "Reset");
     resetBtn.setAttribute("value", "Reset");
     let btn = document.getElementById("btn");
-    let grid = document.getElementById("board");
     resetBtn.addEventListener("click", () => {
         document.getElementById("form1").reset();
     })
     btn.appendChild(resetBtn);
 }
 
-// Function to parse through HTML table and return values
+// Parse through HTML table and return values
 // and execute solver
 function readTable(table) {
-    const nodeNumbers = table.childNodes.length;
     const nodes = table.childNodes;
     let cellCount = 1;
     let sudokuGr = [];
@@ -92,26 +78,47 @@ function readTable(table) {
                 } else {
                     cell.value;
                 }
-                rows.push(cell.value);
+                rows.push(parseInt(cell.value));
             })
         })
         sudokuGr.push(rows);
-    }); 
-    console.log(testInput);
-    //return sudokuGr;
-    return testInput;
+    });
+    return sudokuGr;
 }
 
-function displaySolveBoard(table) {
-    const inputs = readTable(table);
+function displaySolveBoard(table) {    
+    let inputs = readTable(table);
     let solved = solveBoard(inputs);
-    for (let i = 0; i < board.rows.length; i++) {
-        for (let j = 0; j < board.rows[i].cells.length; j++) {
-            board.rows[i].cells[j].innerHTML = solved[i][j];
+    for (let i = 0; i < table.rows.length; i++) {
+        for (let j = 0; j < table.rows[i].cells.length; j++) {
+            table.rows[i].cells[j].innerHTML = solved[i][j];
         }
     }
 }
 
+// Solve board
+function solveBoard(board) {
+    let find = findNextEmpty(board);
+    let row = find[0];
+    let col = find[1];
+    if (row === -1) {
+        return board;
+    } 
+    for (let i = 1; i <= 9; i++) {
+        if (checkNum(board, row, col, i)) {
+            board[row][col] = i;
+            solveBoard(board);
+            }
+        }
+        if (findNextEmpty(board)[0] !== -1) {
+            board[row][col] = 0;
+        } 
+    return board;
+};
+
+// Helper functions for solve function
+
+// Finds empty values in array and return to solve function
 const findNextEmpty = board => {
     for (let i = 0; i < 9; i++) {
         for (let j = 0; j < 9; j++) {
@@ -121,33 +128,18 @@ const findNextEmpty = board => {
     }
     return [-1, -1]; 
 };
-function solveBoard(readTable) {
-    //console.log(sudokuGrid)
-    let find = findNextEmpty(readTable);
-    let row = find[0];
-    let col = find[1];
-    if (row === -1) {
-        return board;
-    } 
-    for (let i = 1; i <= 9; i++) {
-        if (checkNum(board, row, col, i)) {
-            board[row][col] = i;
-            solveBoard(sudokuGrid);
-            }
-        }
-        if (findNextEmpty(sudokuGrid)[0] !== -1) {
-            sudokuGrid[row][col] = 0;
-        } 
-    return sudokuGrid;
-};
+
+// Checks row for valid input
 const checkRow = (board, row, num) => {
-    for (let i = 0; i < board[row].length; i++) {
+    for (let i = 0; i < board[0].length; i++) {
         if (board[row][i] === num) {
             return false;
         }
     }
     return true;
 };
+
+// Check column for valid input
 const checkCol = (board, col, num) => {
     for (let i = 0; i < board.length; i++) {
         if (board[i][col] === num) {
@@ -156,6 +148,8 @@ const checkCol = (board, col, num) => {
     }
     return true;
 };
+
+// Check 3x3 grid for valid input
 const checkSubGrid = (board, row, col, num) => {
     boxRow = Math.floor(row / 3) * 3;
     boxCol = Math.floor(col / 3) * 3;
@@ -168,6 +162,8 @@ const checkSubGrid = (board, row, col, num) => {
     }
     return true;
 };
+
+// Checks number that was placed into board to ensure if board is valid
 const checkNum = (board, row, col, num) => {
     if (checkRow(board, row, num) && 
         checkCol(board,col, num) && 
