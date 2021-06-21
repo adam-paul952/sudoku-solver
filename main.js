@@ -1,17 +1,18 @@
+// Create HTML grid for board
 const generateBoard = () => {
-    //Call div for containing table
+    // Call div for containing table
     let sudokuGrid = document.getElementById("container");
-    
-    //Create table and table body
+
+    // Create table and table body
     let grid = document.createElement("table");
     let tbody = document.createElement("tbody");
-    
-    //Create rows and cols
+
+    // Create rows and cols
     for (let i = 0; i < 9; i++) {
         let row = document.createElement("tr");
         for (let j = 0; j < 9; j++) {
             let col = document.createElement("td");
-            
+
             // Create Cell Input and set max and min
             let cell = document.createElement("input");
             cell.setAttribute("type", "number");
@@ -22,17 +23,18 @@ const generateBoard = () => {
             cell.setAttribute("value", "")
             cell.setAttribute("placeholder", "0");
             cell.setAttribute("maxlength", "1")
-            
+
             col.appendChild(cell);
             row.appendChild(col);
         }
         tbody.appendChild(row);
-    } 
+    }
     grid.appendChild(tbody);
     tbody.setAttribute("id", "board");
     sudokuGrid.appendChild(grid);
 }
 
+// Create solve button
 const createSubmit = () => {
     let submitBtn = document.getElementById("submit");
     submitBtn = document.createElement("input");
@@ -43,11 +45,11 @@ const createSubmit = () => {
     let btn = document.getElementById("btn");
     const grid = document.getElementById("board");
     submitBtn.addEventListener("click", () => {
-        displaySolveBoard(grid);
+            displaySolveBoard(grid);
     });
     btn.appendChild(submitBtn)
 }
-
+// Create reset button
 const createReset = () => {
     let resetBtn = document.getElementById("resetBtn");
     resetBtn = document.createElement("input");
@@ -55,8 +57,9 @@ const createReset = () => {
     resetBtn.setAttribute("name", "Reset");
     resetBtn.setAttribute("value", "Reset");
     let btn = document.getElementById("btn");
+    const grid = document.getElementById("board");
     resetBtn.addEventListener("click", () => {
-        document.getElementById("form1").reset();
+        window.location.reload();
     })
     btn.appendChild(resetBtn);
 }
@@ -86,9 +89,11 @@ function readTable(table) {
     return sudokuGr;
 }
 
-function displaySolveBoard(table) {    
+// Call solve and display results in HTML table
+function displaySolveBoard(table) {
     let inputs = readTable(table);
     let solved = solveBoard(inputs);
+    // let valid = isBoardValid(solved);
     for (let i = 0; i < table.rows.length; i++) {
         for (let j = 0; j < table.rows[i].cells.length; j++) {
             table.rows[i].cells[j].innerHTML = solved[i][j];
@@ -103,7 +108,7 @@ function solveBoard(board) {
     let col = find[1];
     if (row === -1) {
         return board;
-    } 
+    }
     for (let i = 1; i <= 9; i++) {
         if (checkNum(board, row, col, i)) {
             board[row][col] = i;
@@ -112,13 +117,13 @@ function solveBoard(board) {
         }
         if (findNextEmpty(board)[0] !== -1) {
             board[row][col] = 0;
-        } 
-    return board;
+        }
+        return board;
 };
 
-// Helper functions for solve function
+// Helper functions for solver
 
-// Finds empty values in array and return to solve function
+// Finds empty values in array and return to solve
 const findNextEmpty = board => {
     for (let i = 0; i < 9; i++) {
         for (let j = 0; j < 9; j++) {
@@ -126,7 +131,7 @@ const findNextEmpty = board => {
                 return [i, j];
         }
     }
-    return [-1, -1]; 
+    return [-1, -1];
 };
 
 // Checks row for valid input
@@ -165,10 +170,21 @@ const checkSubGrid = (board, row, col, num) => {
 
 // Checks number that was placed into board to ensure if board is valid
 const checkNum = (board, row, col, num) => {
-    if (checkRow(board, row, num) && 
-        checkCol(board,col, num) && 
+    if (checkRow(board, row, num) &&
+        checkCol(board,col, num) &&
         checkSubGrid(board, row, col, num)) {
             return true;
         }
     return false;
 };
+
+// function isBoardValid(board) {
+//     let validBoard = solveBoard(board);
+//     try {
+//         if (!!(validBoard)) {
+//             throw "Please ensure you have enetered a valid board";
+//         }
+//     } catch (err) {
+//             console.log(err);
+//     }
+// }

@@ -1,11 +1,11 @@
 let sudokuGrid = [
     [0,8,0,7,0,0,0,0,2],
-    [0,0,7,0,0,0,4,0,0],
+    [1,0,7,0,0,0,4,0,0],
     [9,4,0,0,0,3,5,0,0],
     [4,0,0,5,2,0,0,0,0],
     [5,0,0,8,0,1,0,0,4],
     [0,0,0,0,3,9,0,0,6],
-    [0,0,4,3,0,0,0,2,8],        
+    [0,0,4,3,0,0,0,2,8],
     [0,0,8,0,0,0,1,0,0],
     [2,0,0,0,0,4,0,6,0]
 ];
@@ -15,13 +15,13 @@ const getRow = (board, row) => {
     return board[row];
 };
 const printCell = value => {
-    if (Array.isArray(value)) {      
+    if (Array.isArray(value)) {
         return 0;
     } else {
         return value;
     }
 };
-const displayBoard = sudokuGrid => {   
+const displayBoard = sudokuGrid => {
     console.log();
     for (i = 0; i < 9; i++) {
         let row = getRow(sudokuGrid, i);
@@ -40,7 +40,7 @@ const findNextEmpty = sudokuGrid => {
                 return [i, j];
         }
     }
-    return [-1, -1]; 
+    return [-1, -1];
 };
 const solveBoard = board => {
     //console.log(sudokuGrid)
@@ -49,7 +49,7 @@ const solveBoard = board => {
     let col = find[1];
     if (row === -1) {
         return sudokuGrid;
-    } 
+    }
     for (let i = 1; i <= 9; i++) {
         if (checkNum(board, row, col, i)) {
             board[row][col] = i;
@@ -58,7 +58,13 @@ const solveBoard = board => {
         }
         if (findNextEmpty(sudokuGrid)[0] !== -1) {
             sudokuGrid[row][col] = 0;
-        } 
+        }
+        // try {
+        //     if (isBoardValid(board) == false);
+        //     throw TypeError("Invalid Board");
+        // } catch (err) {
+        //     console.log(err);
+        // }
     return sudokuGrid;
 };
 const checkRow = (board, row, num) => {
@@ -90,114 +96,65 @@ const checkSubGrid = (board, row, col, num) => {
     return true;
 };
 const checkNum = (board, row, col, num) => {
-    if (checkRow(board, row, num) && 
-        checkCol(board,col, num) && 
+    if (checkRow(board, row, num) &&
+        checkCol(board,col, num) &&
         checkSubGrid(board, row, col, num)) {
             return true;
         }
     return false;
 };
 
-// displayBoard(sudokuGrid);
-// console.log('');
-// console.log('----------------------');
-// solveBoard(sudokuGrid);
-// displayBoard(sudokuGrid);
+// function isBoardValid(board) {
+//     let validBoard = solveBoard(board);
+//     try {
+//         if (!!(validBoard)) {
+//             throw "Impossible board";
+//         }
+//     } catch (err) {
+//             console.log(err);
+//     }
+// }
 
-const generateBoard = () => {
-    //Call div for containing table
-    let sudokuGrid = document.getElementById("container");
-    
-    //Create table and table body
-    let grid = document.createElement("table");
-    let tbody = document.createElement("tbody");
-    
-    //Create rows and cols
+function isBoardValid(board) {
+    let rows = [];
+    let cols = [];
+    let boxes = [];
     for (let i = 0; i < 9; i++) {
-        let row = document.createElement("tr");
-        for (let j = 0; j < 9; j++) {
-            let col = document.createElement("td");
-            
-            // Create Cell Input and set max and min
-            let cell = document.createElement("input");
-            cell.setAttribute("type", "number");
-            cell.setAttribute("min", 0);
-            cell.setAttribute("max", 9);
-            cell.setAttribute("name", "cell");
-            cell.setAttribute("contentEditable", "true");
-            cell.setAttribute("value", "")
-            cell.setAttribute("placeholder", "0");
-            
-            col.appendChild(cell);
-            row.appendChild(col);
-        }
-        tbody.appendChild(row);
-    } 
-    grid.appendChild(tbody);
-    tbody.setAttribute("id", "board");
-    sudokuGrid.appendChild(grid);
-}
-
-const createSubmit = () => {
-    let submitBtn = document.getElementById("submit");
-    submitBtn = document.createElement("input");
-    submitBtn.setAttribute("type", "button");
-    submitBtn.setAttribute("id", "submitButton")
-    submitBtn.setAttribute("name", "Solve");
-    submitBtn.setAttribute("value", "Solve");
-    let btn = document.getElementById("btn");
-    const grid = document.getElementById("board");
-    submitBtn.addEventListener("click", () => {
-        readTable(grid);
-        console.log("submitted");
-    });
-    btn.appendChild(submitBtn)
-}
-
-const createReset = () => {
-    let resetBtn = document.getElementById("reset");
-    resetBtn = document.createElement("input");
-    resetBtn.setAttribute("type", "button");
-    resetBtn.setAttribute("name", "Reset");
-    resetBtn.setAttribute("value", "Reset");
-    let btn = document.getElementById("btn");
-    btn.appendChild(resetBtn);
-}
-
-// Function to parse through HTML table and return values
-// and execute solver
-function readTable(table) {
-    const nodeNumbers = table.childNodes.length;
-    const nodes = table.childNodes;
-    let cellCount = 1;
-    let sudokuGr = [];
-    nodes.forEach(row => {
-        let rows = [];
-        row.childNodes.forEach(col =>{
-            col.childNodes.forEach(cell =>{
-                cell.setAttribute("id", "cell " + cellCount);
-                cellCount++;
-                if (cell == "") {
-                    cell.value = 0;
+        rows.push([]);
+        cols.push([]);
+        boxes.push([]);
+    }
+    for (let r = 0; r < 9; r++) {
+        for (let c = 0; c < 9; c++) {
+            let cell = board[r][c];
+            if (cell) {
+                if (rows[r].includes(cell)) {
+                    return false;
                 } else {
-                    cell.value;
+                    rows[r].push(cell);
                 }
-                rows.push(cell.value);
-            })
-        })
-        sudokuGr.push(rows);
-    })
-    //console.log(sudokuGr);
-    let solved = solveBoard(sudokuGr);
-    board = document.getElementById("board");
-    for (let i = 0; i < board.rows.length; i++) {
-        for (let j = 0; j < board.rows[i].cells.length; j++) {
-            board.rows[i].cells[j].innerHTML = solved[i][j];
+            }   if (cols[c].includes(cell)) {
+                    return false;
+            } else {
+                cols[c].push(cell);
+            }
+            let boxIndex = Math.floor((r / 3)) * 3 + Math.floor(c / 3);
+            if (boxes[boxIndex].includes(cell)) {
+                return false;
+            } else {
+                boxes[boxIndex].push(cell);
+            }
         }
     }
+    return true;
+    // console.log(rows);
+    // console.log(cols);
+    // console.log(boxes);
 }
 
-// Function to set answers in the table
-
-// Function to catch any errors to detect an
-// unsolvable board
+displayBoard(sudokuGrid);
+console.log('');
+console.log('----------------------');
+//isBoardValid(sudokuGrid);
+solveBoard(sudokuGrid);
+//displayBoard(sudokuGrid);
