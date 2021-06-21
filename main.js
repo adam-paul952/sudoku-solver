@@ -93,11 +93,19 @@ function readTable(table) {
 function displaySolveBoard(table) {
     let inputs = readTable(table);
     let solved = solveBoard(inputs);
-    // let valid = isBoardValid(solved);
-    for (let i = 0; i < table.rows.length; i++) {
-        for (let j = 0; j < table.rows[i].cells.length; j++) {
-            table.rows[i].cells[j].innerHTML = solved[i][j];
+    let valid = isBoardValid(solved);
+    try {
+        if (!(valid)) {
+            throw new Error("Please ensure a valid board.");
+        } else {
+                for (let i = 0; i < table.rows.length; i++) {
+                    for (let j = 0; j < table.rows[i].cells.length; j++) {
+                        table.rows[i].cells[j].innerHTML = solved[i][j];
+                        }
+                    }
         }
+    } catch (err) {
+        alert(err);
     }
 }
 
@@ -178,13 +186,37 @@ const checkNum = (board, row, col, num) => {
     return false;
 };
 
-// function isBoardValid(board) {
-//     let validBoard = solveBoard(board);
-//     try {
-//         if (!!(validBoard)) {
-//             throw "Please ensure you have enetered a valid board";
-//         }
-//     } catch (err) {
-//             console.log(err);
-//     }
-// }
+// Check board for duplicate entries for verification
+function isBoardValid(board) {
+    let rows = [];
+    let cols = [];
+    let boxes = [];
+    for (let i = 0; i < 9; i++) {
+        rows.push([]);
+        cols.push([]);
+        boxes.push([]);
+    }
+    for (let r = 0; r < 9; r++) {
+        for (let c = 0; c < 9; c++) {
+            let cell = board[r][c];
+            if (cell) {
+                if (rows[r].includes(cell)) {
+                    return false;
+                } else {
+                    rows[r].push(cell);
+                }
+            }   if (cols[c].includes(cell)) {
+                    return false;
+            } else {
+                cols[c].push(cell);
+            }
+            let boxIndex = Math.floor((r / 3)) * 3 + Math.floor(c / 3);
+            if (boxes[boxIndex].includes(cell)) {
+                return false;
+            } else {
+                boxes[boxIndex].push(cell);
+            }
+        }
+    }
+    return true;
+}

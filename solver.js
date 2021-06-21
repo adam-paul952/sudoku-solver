@@ -1,6 +1,6 @@
 let sudokuGrid = [
     [0,8,0,7,0,0,0,0,2],
-    [1,0,7,0,0,0,4,0,0],
+    [0,0,7,0,0,0,4,0,0],
     [9,4,0,0,0,3,5,0,0],
     [4,0,0,5,2,0,0,0,0],
     [5,0,0,8,0,1,0,0,4],
@@ -156,5 +156,6 @@ displayBoard(sudokuGrid);
 console.log('');
 console.log('----------------------');
 //isBoardValid(sudokuGrid);
-solveBoard(sudokuGrid);
+//solveBoard(sudokuGrid);
 //displayBoard(sudokuGrid);
+console.log(checkRow(solveBoard(sudokuGrid)));
