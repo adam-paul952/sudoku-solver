@@ -65,7 +65,6 @@ const createReset = () => {
 }
 
 // Parse through HTML table and return values
-// and execute solver
 function readTable(table) {
     const nodes = table.childNodes;
     let cellCount = 1;
@@ -92,25 +91,25 @@ function readTable(table) {
 // Call solve and display results in HTML table
 function displaySolveBoard(table) {
     let inputs = readTable(table);
-    let solved = solveBoard(inputs);
-    let valid = isBoardValid(solved);
-    try {
-        if (!(valid)) {
-            throw new Error("Please ensure a valid board.");
-        } else {
-                for (let i = 0; i < table.rows.length; i++) {
-                    for (let j = 0; j < table.rows[i].cells.length; j++) {
-                        table.rows[i].cells[j].innerHTML = solved[i][j];
-                        }
-                    }
-        }
-    } catch (err) {
-        alert(err);
+    // debugger;
+    let validInput = isBoardValid(inputs);
+    // let validBoard = isBoardValid(solveBoard(inputs))
+    // console.log(validInput);
+        // if (validInput) {
+            // let solved = solveBoard(inputs);
+            // for (let i = 0; i < table.rows.length; i++) {
+            //     for (let j = 0; j < table.rows[i].cells.length; j++) {
+            //         table.rows[i].cells[j].innerHTML = solved[i][j];
+            //         }
+            //     }
+        // } else {
+        //     throw new Error("Please ensure a valid board.");
+        //  }
     }
-}
 
 // Solve board
 function solveBoard(board) {
+    //console.log(board);
     let find = findNextEmpty(board);
     let row = find[0];
     let col = find[1];
@@ -186,8 +185,9 @@ const checkNum = (board, row, col, num) => {
     return false;
 };
 
-// Check board for duplicate entries for verification
+// Check board for duplicate input entries for verification
 function isBoardValid(board) {
+    //let passRow = [1,2,3,4,5,6,7,8,9];
     let rows = [];
     let cols = [];
     let boxes = [];
@@ -199,24 +199,55 @@ function isBoardValid(board) {
     for (let r = 0; r < 9; r++) {
         for (let c = 0; c < 9; c++) {
             let cell = board[r][c];
-            if (cell) {
-                if (rows[r].includes(cell)) {
-                    return false;
-                } else {
-                    rows[r].push(cell);
-                }
-            }   if (cols[c].includes(cell)) {
-                    return false;
-            } else {
-                cols[c].push(cell);
-            }
             let boxIndex = Math.floor((r / 3)) * 3 + Math.floor(c / 3);
-            if (boxes[boxIndex].includes(cell)) {
-                return false;
-            } else {
-                boxes[boxIndex].push(cell);
-            }
+            rows[r].push(cell);
+            cols[c].push(cell);
+            boxes[boxIndex].push(cell);
+            let filterRows = removeEmptySpaces(rows, 0);
+            let filterCols = removeEmptySpaces(cols, 0);
+            let filterBoxes = removeEmptySpaces(boxes, 0);
+            console.log(filterRows);
+            console.log(filterCols);
+            console.log(filterBoxes);
+            //let val = 0;
+            // if (cell) {
+            //     if (rows[r].includes(cell)) {
+            //         return false;
+            //     } else {
+            //         rows[r].push(cell);
+            //     }
+            //     if (cols[c].includes(cell)) {
+            //         return false;
+            //     } else {
+            //         cols[c].push(cell);
+            //     }
+            //     let boxIndex = Math.floor((r / 3)) * 3 + Math.floor(c / 3);
+            //     if (boxes[boxIndex].includes(cell)) {
+            //         return false;
+            //     } else {
+            //     boxes[boxIndex].push(cell);
+            // }
+            // // if (rows.includes(0) && cols.includes(0) && boxes.includes(0)) {
+            // //     return true;
+            // // }
+            // }
         }
     }
-    return true;
+        //return true;
+        // console.log(rows);
+        // console.log(cols);
+        // console.log(boxes);
 }
+
+function removeEmptySpaces(line, val) {
+    let i = line.length;
+    while (i--) {
+        if (line[i] === val) {
+            line.splice(i, 1);
+        }
+    }
+    return line;
+}
+
+// Need to validate duplicates in user input to true
+// also need to validate board accepting zeros
