@@ -158,4 +158,4 @@ console.log('----------------------');
 //isBoardValid(sudokuGrid);
 //solveBoard(sudokuGrid);
 //displayBoard(sudokuGrid);
-console.log(checkRow(solveBoard(sudokuGrid)));
+//console.log(checkRow(solveBoard(sudokuGrid)));

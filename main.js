@@ -194,46 +194,102 @@ function isBoardValid(board) {
         rows.push([]);
         cols.push([]);
         boxes.push([]);
-    }// debugger;
+    } // debugger;
     for (let r = 0; r < 9; r++) {
         for (let c = 0; c < 9; c++) {
             let cell = board[r][c];
             let boxIndex = Math.floor((r / 3)) * 3 + Math.floor(c / 3);
-            // if (rows.includes(cell.value && cell.value !== 0)){
+            rows[r].push(cell);
+            cols[c].push(cell);
+            boxes[boxIndex].push(cell);
+            // let duplicateRow = [];
+    // let duplicateCol = [];
+    // let duplicateBox = []; 
+    // rows.forEach(num => {
+    //     duplicateRow.push(num);
+    //     if (num !== 0 && !(duplicateRow.includes(num))) {
+    //         return false;
+    //     } 
+    // });
+    // cols.forEach(num => {
+    //     if (num > 0 && !duplicateCol.includes(num)) {
+    //         duplicateCol.push(num);
+    //     }
+    // });
+    // boxes.forEach(num => {
+    //     if (num > 0 && !duplicateBox.includes(num)) {
+    //         duplicateBox.push(num);
+    //     }
+    // });
+            // if (rows.includes(cell && cell !== 0)){
             //     return false;
             // } else {
-                rows[r].push(cell);
+            //     rows[r].push(cell);
             // }
-            // if (cols.includes(cell.value) && cell.value !== 0) {
+            // if (cols.includes(cell) && cell !== 0) {
             //     return false;
             // } else {
-                 cols[c].push(cell);
+            //      cols[c].push(cell);
             // }
-            // if (boxes.includes(cell.value) && cell.value !== 0) {
+            // if (boxes.includes(cell) && cell !== 0) {
             //     return false;
             // } else {
-                boxes[boxIndex].push(cell);
+            //     boxes[boxIndex].push(cell);
             // }
-            for (let x = 0; x < 9; x++) {
-                if (cell === rows[x]) {
-                    return false;
-                }
-                if (cell === cols[x] && cell !== 0) {
-                    return false;
-                }
-                if (cell === boxes[x] && cell !== 0) {
-                    return false;
-                }
-            }
-        }
-    }
+    //         for (let x = 0; x < 9; x++) {
+    //             for (let z = 0; z < 9; z ++) {
+    //                 if (cell === rows[x][z]) {
+    //                     return false;
+    //                 }
+    //                 if (cell === cols[x][z] && cell !== 0) {
+    //                     return false;
+    //                 }
+    //                 if (cell === boxes[x][z] && cell !== 0) {
+    //                     return false;
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
         // console.log(rows);
         // console.log(cols);
         // console.log(boxes);
+        }    
+        let testRow = findDuplicate(rows);
+        let testCol = findDuplicate(cols);
+        let testBox = findDuplicate(boxes);
+        // console.log(testRow);
+        // console.log(testCol);
+        // console.log(testBox);
+    } //debugger;
+            
+    
         return true;
 }
 
-
+const findDuplicate = arr => {
+    const duplicate = new Set(arr);
+    let result = false;
+    if (arr.length !== duplicate.size) {
+        result = true;
+    }
+    if (result) {
+        console.log(`The result is: ${result}`);
+    } else {
+        console.log(`The result is: ${result}`);
+    }
+    // for (let i = 0; i < arr.length; i++) {
+    //     if (duplicate[arr[i]]) {
+    //         duplicate[arr[i]] += 1;
+    //     } else {
+    //         duplicate[arr[i]] = 1;
+    //     }
+    // } for (let item in duplicate) {
+    //     if (item >= 2) {
+    //         return false;
+    //     }
+    // }
+}
 
 // function removeEmptySpaces(line) {
     // for(let i = 0; i < line.length; i++) {
