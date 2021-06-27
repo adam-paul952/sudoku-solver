@@ -85,28 +85,27 @@ function readTable(table) {
         })
         sudokuGr.push(rows);
     });
-    return board;
+    return sudokuGr;
 }
 
 // Call solve and display results in HTML table
 function displaySolveBoard(table) {
     let inputs = readTable(table);
     let validInput = isBoardValid(inputs);
-        console.log(`Is the board valid? ${validInput}`);
-        // try {
-        //     if (validInput) {
-        //     let solved = solveBoard(inputs);
-        //     for (let i = 0; i < table.rows.length; i++) {
-        //         for (let j = 0; j < table.rows[i].cells.length; j++) {
-        //             table.rows[i].cells[j].innerHTML = solved[i][j];
-        //             }
-        //         }
-        //     } else {
-        //         throw new Error("Please ensure a valid board.");
-        //     }
-        // } catch (err) {
-        //     alert(err);
-        // }
+        try {
+            if (validInput) {
+            let solved = solveBoard(inputs);
+            for (let i = 0; i < table.rows.length; i++) {
+                for (let j = 0; j < table.rows[i].cells.length; j++) {
+                    table.rows[i].cells[j].innerHTML = solved[i][j];
+                    }
+                }
+            } else {
+                throw "Please ensure you have enetered a valid board.";
+            }
+        } catch (err) {
+            alert(err);
+        }
     }
 
 // Solve board
@@ -197,7 +196,7 @@ function isBoardValid(board) {
         rows.push([]);
         cols.push([]);
         boxes.push([]);
-    }
+    } //debugger;
     for (let r = 0; r < 9; r++) {
         for (let c = 0; c < 9; c++) {
             let cell = board[r][c];
@@ -228,7 +227,6 @@ function isBoardValid(board) {
 const findDuplicate = arr => {
     const arrayWithNoEmptySpaces = removeEmptySpaces(arr);
     const duplicate = new Set(arrayWithNoEmptySpaces);
-    console.log(arrayWithNoEmptySpaces.length, duplicate.size);
     if (arrayWithNoEmptySpaces.length !== duplicate.size) {
         return false;
     } else {
