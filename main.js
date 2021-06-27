@@ -1,15 +1,3 @@
-const testData = [
-    [0,8,0,7,0,0,0,0,2],
-    [0,0,7,0,0,0,4,0,0],
-    [9,4,0,0,0,3,5,0,0],
-    [4,0,0,5,2,0,0,0,0],
-    [5,0,0,8,0,1,0,0,4],
-    [0,0,0,0,3,9,0,0,6],
-    [0,0,4,3,0,0,0,2,8],
-    [0,0,8,0,0,0,1,0,0],
-    [2,0,0,0,0,4,0,6,0]
-];
-
 // Create HTML grid for board
 const generateBoard = () => {
     // Call div for containing table
@@ -97,26 +85,28 @@ function readTable(table) {
         })
         sudokuGr.push(rows);
     });
-    return testData;
+    return board;
 }
 
 // Call solve and display results in HTML table
 function displaySolveBoard(table) {
     let inputs = readTable(table);
-    // debugger;
     let validInput = isBoardValid(inputs);
-    // let validBoard = isBoardValid(solveBoard(inputs))
-    console.log(`Is the input valid? ${validInput}`);
-        // if (validInput) {
+        console.log(`Is the board valid? ${validInput}`);
+        // try {
+        //     if (validInput) {
         //     let solved = solveBoard(inputs);
         //     for (let i = 0; i < table.rows.length; i++) {
         //         for (let j = 0; j < table.rows[i].cells.length; j++) {
         //             table.rows[i].cells[j].innerHTML = solved[i][j];
         //             }
         //         }
-        // } else {
-        //     throw new Error("Please ensure a valid board.");
-        //  }
+        //     } else {
+        //         throw new Error("Please ensure a valid board.");
+        //     }
+        // } catch (err) {
+        //     alert(err);
+        // }
     }
 
 // Solve board
@@ -207,7 +197,7 @@ function isBoardValid(board) {
         rows.push([]);
         cols.push([]);
         boxes.push([]);
-    } // debugger;
+    }
     for (let r = 0; r < 9; r++) {
         for (let c = 0; c < 9; c++) {
             let cell = board[r][c];
@@ -215,74 +205,23 @@ function isBoardValid(board) {
             rows[r].push(cell);
             cols[c].push(cell);
             boxes[boxIndex].push(cell);
-            // let duplicateRow = [];
-    // let duplicateCol = [];
-    // let duplicateBox = []; 
-    // rows.forEach(num => {
-    //     duplicateRow.push(num);
-    //     if (num !== 0 && !(duplicateRow.includes(num))) {
-    //         return false;
-    //     } 
-    // });
-    // cols.forEach(num => {
-    //     if (num > 0 && !duplicateCol.includes(num)) {
-    //         duplicateCol.push(num);
-    //     }
-    // });
-    // boxes.forEach(num => {
-    //     if (num > 0 && !duplicateBox.includes(num)) {
-    //         duplicateBox.push(num);
-    //     }
-    // });
-            // if (rows.includes(cell && cell !== 0)){
-            //     return false;
-            // } else {
-            //     rows[r].push(cell);
-            // }
-            // if (cols.includes(cell) && cell !== 0) {
-            //     return false;
-            // } else {
-            //      cols[c].push(cell);
-            // }
-            // if (boxes.includes(cell) && cell !== 0) {
-            //     return false;
-            // } else {
-            //     boxes[boxIndex].push(cell);
-            // }
-    //         for (let x = 0; x < 9; x++) {
-    //             for (let z = 0; z < 9; z ++) {
-    //                 if (cell === rows[x][z]) {
-    //                     return false;
-    //                 }
-    //                 if (cell === cols[x][z] && cell !== 0) {
-    //                     return false;
-    //                 }
-    //                 if (cell === boxes[x][z] && cell !== 0) {
-    //                     return false;
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
-        // console.log(rows);
-        // console.log(cols);
-        // console.log(boxes);
         }
-
-        // let testRow = findDuplicate(rows);
-        // let testCol = findDuplicate(cols);
-        // let testBox = findDuplicate(boxes);
-        // console.log(testRow);
-        // console.log(testCol);
-        // console.log(testBox);
-    } //debugger;
+    }
     rows.forEach(row => {
         if (findDuplicate(row) == false ) {
             isInputValid = false;
         }
     });
-    cols.forEach(col => {if (findDuplicate(col) == false) {isInputValid = false}});
-    boxes.forEach(box => {if (findDuplicate(box) == false) {isInputValid = false}});
+    cols.forEach(col => {
+        if (findDuplicate(col) == false) {
+            isInputValid = false;
+        }
+    });
+    boxes.forEach(box => {
+        if (findDuplicate(box) == false) {
+            isInputValid = false
+        }
+    });
     return isInputValid;
 }
 
@@ -300,5 +239,3 @@ const findDuplicate = arr => {
 const removeEmptySpaces = (inputArray) => {
     return inputArray.filter(number => number != 0);
 }
-
-// Need to validate duplicates in user input to false
