@@ -224,6 +224,7 @@ function isBoardValid(board) {
     return isInputValid;
 }
 
+// Check input for duplicate entries
 const findDuplicate = arr => {
     const arrayWithNoEmptySpaces = removeEmptySpaces(arr);
     const duplicate = new Set(arrayWithNoEmptySpaces);
@@ -234,6 +235,7 @@ const findDuplicate = arr => {
     }
 }
 
+// Remove 0's from input
 const removeEmptySpaces = (inputArray) => {
     return inputArray.filter(number => number != 0);
 }

@@ -1,6 +1,9 @@
 ## Sudoku Solver
 
-**Description:**
+**Getting Started:**
+Use the following link: [Sudoku Solver](adam-paul952.github.io){:target="_blank"}.
+
+This will open the page in your browser where you will be able to use the sudoku solver.
 
 **Description:**
 The Python version of this code is designed to read a text file that has your board on it, and print the results into your console.
