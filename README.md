@@ -1,7 +1,7 @@
 ## Sudoku Solver
 
 **Getting Started:**
-Use the following link: [Sudoku Solver](adam-paul952.github.io){:target="_blank"}.
+Use the following link: [Sudoku Solver](/adam-paul952.github.io/){:target="_blank"}.
 
 This will open the page in your browser where you will be able to use the sudoku solver.
 
