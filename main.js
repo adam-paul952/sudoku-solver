@@ -101,7 +101,7 @@ function displaySolveBoard(table) {
                     }
                 }
             } else {
-                throw "Please ensure you have enetered a valid board.";
+                throw "Please ensure you have entered a valid board.";
             }
         } catch (err) {
             alert(err);
