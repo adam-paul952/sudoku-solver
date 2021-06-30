@@ -54,8 +54,8 @@ const checkCol = (board, col, num) => {
 
 // Check 3x3 grid for valid input
 const checkSubGrid = (board, row, col, num) => {
-    boxRow = Math.floor(row / 3) * 3;
-    boxCol = Math.floor(col / 3) * 3;
+    let boxRow = Math.floor(row / 3) * 3;
+    let boxCol = Math.floor(col / 3) * 3;
     for (let i = 0; i < 3; i++) {
         for (let j = 0; j < 3; j++) {
             if (board[boxRow + i][boxCol + j] === num) {
@@ -76,4 +76,4 @@ const checkNum = (board, row, col, num) => {
     return false;
 };
 
-export {solveBoard, findNextEmpty, checkRow, checkCol, checkSubGrid, checkNum};
+export default solveBoard;

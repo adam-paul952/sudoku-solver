@@ -52,4 +52,4 @@ const removeEmptySpaces = (inputArray) => {
     return inputArray.filter(number => number != 0);
 }
 
-export {isBoardValid, findDuplicate, removeEmptySpaces};
+export default isBoardValid;
