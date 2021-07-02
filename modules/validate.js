@@ -8,7 +8,7 @@ function isBoardValid(board) {
         rows.push([]);
         cols.push([]);
         boxes.push([]);
-    } //debugger;
+    }
     for (let r = 0; r < 9; r++) {
         for (let c = 0; c < 9; c++) {
             let cell = board[r][c];
