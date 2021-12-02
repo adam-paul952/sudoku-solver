@@ -1,32 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <title>Sudoku Solver</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="main.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="description" content="A sudoku Solver" />
+    <meta name="author" content="Adam Paul" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image" content="/sudoku.png" />
+  </head>
 
-    <head>
-      <title>Sudoku Solver</title>
-      <link rel="stylesheet" href="style.css">
-      <script src="main.js"></script>
-      <meta charset="UTF-8">
-      <meta name="description" content="A sudoku Solver">
-      <meta name="author" content ="Adam Paul">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-
-    <body onload="generateBoard(); createSubmit(); createReset()">
-      <header>
-        <h2>Sudoku Solver</h2>
-      </header>
-      <section>
-        <p>Input your numbers in the sudoku puzzle grid below and click the "solve" button below to solve your puzzle! </p>
-        <p>Ensure numbers are between 1 - 9; with no repeating numbers in a single row, column or 3x3 square</p>
-      </section>
-      <form id="form1">
-        <div id="container"></div>
-        <br>
-        <div id="btn">
-          <div id="submit"></div>
-          <div id="resetBtn"></div>
-        </div>
-      </form>
-    </body>
-
+  <body onload="generateBoard(); createSubmit(); createReset()">
+    <header>
+      <h2>Sudoku Solver</h2>
+    </header>
+    <section>
+      <p>
+        Input your numbers in the sudoku puzzle grid below and click the "solve"
+        button below to solve your puzzle!
+      </p>
+      <p>
+        Ensure numbers are between 1 - 9; with no repeating numbers in a single
+        row, column or 3x3 square
+      </p>
+    </section>
+    <form id="form1">
+      <div id="container"></div>
+      <br />
+      <div id="btn">
+        <div id="submit"></div>
+        <div id="resetBtn"></div>
+      </div>
+    </form>
+  </body>
 </html>
